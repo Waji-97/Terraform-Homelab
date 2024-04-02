@@ -84,14 +84,14 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        export pm_api_url=$PM_API_URL
-        export ssh_key=$SSH_KEY
-        export pm_user=$PM_USER
-        export pm_password=$PM_PASSWORD
-        export proxmox_server_pc=$PROXMOX_SERVER_PC
-        export proxmox_mini_pc1=$PROXMOX_MINI_PC1
-        export proxmox_mini_pc2=$PROXMOX_MINI_PC2
-        export proxmox_mini_pc3=$PROXMOX_MINI_PC3
+        export TF_VAR_pm_api_url=$PM_API_URL
+        export TF_VAR_ssh_key=$SSH_KEY
+        export TF_VAR_pm_user=$PM_USER
+        export TF_VAR_pm_password=$PM_PASSWORD
+        export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER_PC
+        export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
+        export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
+        export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
 
         terraform plan -input=false
       env: 
