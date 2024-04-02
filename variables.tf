@@ -3,12 +3,12 @@ variable "pm_api_url" {
 }
 
 variable "pm_user" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "pm_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -29,6 +29,6 @@ variable "proxmox_server_pc" {
 }
 
 variable "ssh_key" {
-  type = string
+  type      = string
   sensitive = true
 }

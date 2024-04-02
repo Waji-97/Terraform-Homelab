@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     proxmox = {
-      source = "bpg/proxmox"
+      source  = "bpg/proxmox"
       version = "0.51.0"
     }
   }
-  
+
   cloud {
     organization = "Waji_Homelab"
 
