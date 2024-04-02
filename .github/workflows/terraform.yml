@@ -83,7 +83,26 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var="ssh_key=${{ secrets.TF_SSH_KEY }}" -var="pm_api_url=${{ secrets.TF_PM_API_URL }}" -var="pm_user=${{ secrets.TF_PM_USER }}" -var="pm_password=${{ secrets.TF_PM_PASSWORD }}" -var="proxmox_server_pc=${{ secrets.TF_PROXMOX_SERVER_PC }}" -var"proxmox_mini_pc1=${{ secrets.TF_PROXMOX_MINI_PC1 }}" -var"proxmox_mini_pc2=${{ secrets.TF_PROXMOX_MINI_PC2 }}" -var"proxmox_mini_pc3=${{ secrets.TF_PROXMOX_MINI_PC3 }}"
+      run: |
+        export pm_api_url=$PM_API_URL
+        export ssh_key=$SSH_KEY
+        export pm_user=$PM_USER
+        export pm_password=$PM_PASSWORD
+        export proxmox_server_pc=$PROXMOX_SERVER_PC
+        export proxmox_mini_pc1=$PROXMOX_MINI_PC1
+        export proxmox_mini_pc2=$PROXMOX_MINI_PC2
+        export proxmox_mini_pc3=$PROXMOX_MINI_PC3
+
+        terraform plan -input=false
+      env: 
+        SSH_KEY=${{ secrets.TF_SSH_KEY }}
+        PM_API_URL=${{ secrets.TF_PM_API_URL }}
+        PM_USER=${{ secrets.TF_PM_USER }}
+        PM_PASSWORD=${{ secrets.TF_PM_PASSWORD }}
+        PROXMOX_SERVER_PC=${{ secrets.TF_PROXMOX_SERVER_PC }}
+        PROXMOX_MINI_PC1=${{ secrets.TF_PROXMOX_MINI_PC1 }}
+        PROXMOX_MINI_PC2=${{ secrets.TF_PROXMOX_MINI_PC2 }}
+        PROXMOX_MINI_PC3=${{ secrets.TF_PROXMOX_MINI_PC3 }}
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
