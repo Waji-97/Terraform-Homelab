@@ -83,7 +83,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var="ssh_key=${{ secrets.TF_SSH_KEY }}"
+      run: terraform plan -input=false -var="ssh_key=${{ secrets.TF_SSH_KEY }}" -var="pm_api_url=${{ secrets.TF_PM_API_URL }}" -var="pm_user=${{ secrets.TF_PM_USER }}" -var="pm_password=${{ secrets.TF_PM_PASSWORD }}" -var="proxmox_server_pc=${{ secrets.TF_PROXMOX_SERVER_PC }}" -var"proxmox_mini_pc1=${{ secrets.TF_PROXMOX_MINI_PC1 }}" -var"proxmox_mini_pc2=${{ secrets.TF_PROXMOX_MINI_PC2 }}" -var"proxmox_mini_pc3=${{ secrets.TF_PROXMOX_MINI_PC3 }}"
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
