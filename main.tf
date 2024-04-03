@@ -3,6 +3,7 @@ module "control_plane" {
   proxmox_mini1         = var.proxmox_mini_pc1
   proxmox_mini2         = var.proxmox_mini_pc2
   proxmox_mini3         = var.proxmox_mini_pc3
+  proxmox_server       = var.proxmox_server_pc
   ssh_key               = var.ssh_key
   ubuntu_image_file_id = module.images.ubuntu_cloud_image_pve_id
   ubuntu_image_file1_id = module.images.ubuntu_cloud_image_mini1_id
