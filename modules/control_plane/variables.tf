@@ -10,9 +10,17 @@ variable "proxmox_mini3" {
     type = string
 }
 
+variable "proxmox_server" {
+    type = string
+}
+
 variable "ssh_key" {
   type = string
   sensitive = true
+}
+
+variable "ubuntu_image_file_id" {
+  type = string
 }
 
 variable "ubuntu_image_file1_id" {
