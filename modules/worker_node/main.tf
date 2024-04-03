@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "worker01" {
   node_name = var.proxmox_server
 
   cpu {
-    cores = 2
+    cores = 3
   }
 
   memory {
@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_vm" "worker01" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.50/24"
+        address = "192.168.219.44/24"
         gateway = "192.168.219.1"
       }
     }
@@ -44,7 +44,7 @@ resource "proxmox_virtual_environment_vm" "worker02" {
   node_name = var.proxmox_server
 
   cpu {
-    cores = 2
+    cores = 3
   }
 
   memory {
@@ -55,7 +55,7 @@ resource "proxmox_virtual_environment_vm" "worker02" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.51/24"
+        address = "192.168.219.45/24"
         gateway = "192.168.219.1"
       }
     }
@@ -80,12 +80,14 @@ resource "proxmox_virtual_environment_vm" "worker02" {
   }
 }
 
-resource "proxmox_virtual_environment_vm" "worker03" {
-  name = "worker03"
+
+
+resource "proxmox_virtual_environment_vm" "usr_worker01" {
+  name = "usrworker01"
   node_name = var.proxmox_server
 
   cpu {
-    cores = 2
+    cores = 3
   }
 
   memory {
@@ -96,7 +98,7 @@ resource "proxmox_virtual_environment_vm" "worker03" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.52/24"
+        address = "192.168.219.54/24"
         gateway = "192.168.219.1"
       }
     }
@@ -121,3 +123,43 @@ resource "proxmox_virtual_environment_vm" "worker03" {
   }
 }
 
+resource "proxmox_virtual_environment_vm" "usr_worker02" {
+  name = "usrworker02"
+  node_name = var.proxmox_server
+
+  cpu {
+    cores = 3
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  initialization {
+
+    ip_config {
+      ipv4 {
+        address = "192.168.219.55/24"
+        gateway = "192.168.219.1"
+      }
+    }
+
+    user_account {
+      username = "homelab"
+      keys = [trimspace(var.ssh_key)]
+    }
+  }
+
+
+  disk {
+    datastore_id = "local-lvm"
+    file_id = var.ubuntu_image_file_id
+    interface = "virtio0"
+    iothread = true
+    size = 20
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+}
