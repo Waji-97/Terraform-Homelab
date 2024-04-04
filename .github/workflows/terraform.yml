@@ -10,7 +10,7 @@ permissions:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
 
     defaults:
@@ -21,31 +21,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup SSH Keys
-      run: |
-          sudo apt-get update
-          sudo apt-get install -y openssh-client
-          sudo useradd -m homelab -s /bin/bash
-          sudo mkdir -p /home/homelab/.ssh
-          sudo echo "${{ secrets.SSH_PUBLIC_KEY }}" > /home/homelab/.ssh/authorized_keys
-          sudo echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/homelab/.ssh/id_rsa
-          sudo chmod 700 /home/homelab/.ssh
-          sudo chmod 600 /home/homelab/.ssh/id_rsa
-          sudo chmod 644 /home/homelab/.ssh/authorized_keys
-          sudo chown -R homelab:homelab /home/homelab/.ssh
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
     - name: Terraform Init
-      run: |
-        whoami
-         sudo -u homelab -- sh -c 'terraform init'
+      run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
@@ -64,7 +41,6 @@ jobs:
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
         export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
 
-        whoami
         terraform plan -input=false
       env: 
         SSH_KEY: ${{ secrets.TF_SSH_KEY }}
@@ -88,9 +64,9 @@ jobs:
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
         export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
 
-        whoami
         terraform apply -auto-approve -input=false
       env:
+        TF_LOG: DEBUG
         SSH_KEY: ${{ secrets.TF_SSH_KEY }}
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
