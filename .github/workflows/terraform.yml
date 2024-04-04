@@ -37,6 +37,11 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
     - name: Terraform Init
       run: sudo -u homelab -i -- terraform init
 
