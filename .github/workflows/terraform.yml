@@ -11,11 +11,6 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    container:
-      image: waji97/custom-runner:v3
-      # credentials:
-      #   username: ${{ secrets.DOCKER_USERNAME }}
-      #   password: ${{ secrets.DOCKER_PASSWORD }}
     environment: production
 
     defaults:
@@ -28,12 +23,16 @@ jobs:
 
     - name: Setup SSH Keys
       run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > /home/homelab/.ssh/id_rsa
-        echo "$SSH_PUBLIC_KEY" > /home/homelab/.ssh/id_rsa.pub
-        chmod 600 /home/homelab/.ssh/id_rsa
-        chmod 644 /home/homelab/.ssh/id_rsa.pub
-        sudo apt-get install -y unzip
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
+          sudo useradd -m homelab -s /bin/bash
+          sudo mkdir -p /home/homelab/.ssh
+          sudo echo "$SSH_PUBLIC_KEY" > /home/homelab/.ssh/authorized_keys
+          sudo echo "$SSH_PRIVATE_KEY" > /home/homelab/.ssh/id_rsa
+          sudo chmod 700 /home/homelab/.ssh
+          sudo chmod 600 /home/homelab/.ssh/id_rsa
+          sudo chmod 644 /home/homelab/.ssh/authorized_keys
+          sudo chown -R homelab:homelab /home/homelab/.ssh
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
@@ -44,8 +43,9 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform Init
-      run: which terraform
-      # run: sudo -u homelab -i -- terraform init
+      run: |
+        whoami
+        terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
