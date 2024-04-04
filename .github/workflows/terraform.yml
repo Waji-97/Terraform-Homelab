@@ -44,7 +44,8 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform Init
-      run: sudo -u homelab -i -- terraform init
+      run: which terraform
+      # run: sudo -u homelab -i -- terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
