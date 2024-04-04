@@ -23,8 +23,16 @@ jobs:
 
     - name: Setup SSH Keys
       run: |
-        sudo useradd -m homelab -s /bin/bash
-        sudo mkdir -p /home/homelab/.ssh
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
+          sudo useradd -m homelab -s /bin/bash
+          sudo mkdir -p /home/homelab/.ssh
+          sudo echo "${{ secrets.SSH_PUBLIC_KEY }}" > /home/homelab/.ssh/authorized_keys
+          sudo echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/homelab/.ssh/id_rsa
+          sudo chmod 700 /home/homelab/.ssh
+          sudo chmod 600 /home/homelab/.ssh/id_rsa
+          sudo chmod 644 /home/homelab/.ssh/authorized_keys
+          sudo chown -R homelab:homelab /home/homelab/.ssh
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
