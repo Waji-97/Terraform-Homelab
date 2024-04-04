@@ -10,7 +10,7 @@ terraform {
     organization = "Waji_Homelab"
 
     workspaces {
-      name = "waji-homelab"
+      name = "Homelab-TF"
     }
   }
 }
