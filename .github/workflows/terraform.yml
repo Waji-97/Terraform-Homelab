@@ -41,11 +41,13 @@ jobs:
     - name: Terraform Init
       run: |
         whoami
-        #terraform init
+        terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: terraform fmt
+      run: |
+        whoami
+        terraform fmt
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
@@ -59,6 +61,7 @@ jobs:
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
         export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
 
+        whoami
         terraform plan -input=false
       env: 
         SSH_KEY: ${{ secrets.TF_SSH_KEY }}
@@ -81,7 +84,8 @@ jobs:
         export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
         export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
-       
+
+        whoami
         terraform apply -auto-approve -input=false
       env:
         SSH_KEY: ${{ secrets.TF_SSH_KEY }}
