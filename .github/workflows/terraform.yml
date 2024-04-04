@@ -10,13 +10,13 @@ permissions:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: self-hosted
-    # container:
-    #   image: waji97/custom-runner:v3
-    #   # credentials:
-    #   #   username: ${{ secrets.DOCKER_USERNAME }}
-    #   #   password: ${{ secrets.DOCKER_PASSWORD }}
-    # environment: production
+    runs-on: ubuntu-latest
+    container:
+      image: waji97/custom-runner:v3
+      # credentials:
+      #   username: ${{ secrets.DOCKER_USERNAME }}
+      #   password: ${{ secrets.DOCKER_PASSWORD }}
+    environment: production
 
     defaults:
       run:
@@ -26,27 +26,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # - name: Setup SSH Keys
-    #   run: |
-    #     mkdir -p ~/.ssh
-    #     echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    #     echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-    #     chmod 600 ~/.ssh/id_rsa
-    #     chmod 644 ~/.ssh/id_rsa.pub
-    #   env:
-    #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    #     SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
+    - name: Setup SSH Keys
       run: |
-        whoami
-        terraform init
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > /home/homelab/.ssh/id_rsa
+        echo "$SSH_PUBLIC_KEY" > /home/homelab/.ssh/id_rsa.pub
+        chmod 600 /home/homelab/.ssh/id_rsa
+        chmod 644 /home/homelab/.ssh/id_rsa.pub
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+
+    - name: Terraform Init
+      run: sudo -u homelab -i -- terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: |
-        whoami
         terraform fmt
 
     # Generates an execution plan for Terraform
