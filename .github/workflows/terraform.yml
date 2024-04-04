@@ -23,6 +23,9 @@ jobs:
         shell: bash
 
     steps:
+    - name: Adjust permissions
+      run: sudo chown -R homelab:homelab /__w
+      
     - name: Checkout
       uses: actions/checkout@v3
 
