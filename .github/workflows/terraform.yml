@@ -24,12 +24,9 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: |
-        terraform fmt
+      run: terraform fmt
 
-    # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
         export TF_VAR_pm_api_url=$PM_API_URL
@@ -66,7 +63,6 @@ jobs:
 
         terraform apply -auto-approve -input=false
       env:
-        TF_LOG: DEBUG
         SSH_KEY: ${{ secrets.TF_SSH_KEY }}
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
