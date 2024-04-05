@@ -7,7 +7,7 @@ on:
 # Selecting ubuntu-latest provisions a VM with latest stable image GitHub offers. 
 jobs:
   tfdocs:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
 # Pull request checkout doesn't pull the current main branch, but the PR head.
     steps:
@@ -46,10 +46,9 @@ jobs:
       id: comment
       uses: actions/github-script@v6
       with:
-        # github-token: ${{ secrets.GH_TOKEN }}
+        github-token: ${{ secrets.GH_TOKEN }}
         script: |
           const output = `Terraform-docs has updated the README.md. 
-
           ${process.env.readme}`
           github.rest.issues.createComment({
             issue_number: context.issue.number,
