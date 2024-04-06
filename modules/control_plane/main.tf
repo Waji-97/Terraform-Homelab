@@ -14,8 +14,8 @@ resource "proxmox_virtual_environment_vm" "master01" {
   
     ip_config {
       ipv4 {
-        address = "192.168.219.41/24"
-        gateway = "192.168.219.1"
+        address = "192.168.1.41/24"
+        gateway = "192.168.1.1"
       }
     }
 
@@ -35,7 +35,7 @@ resource "proxmox_virtual_environment_vm" "master01" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr8"
   }
 }
 
@@ -55,8 +55,8 @@ resource "proxmox_virtual_environment_vm" "master02" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.42/24"
-        gateway = "192.168.219.1"
+        address = "192.168.1.42/24"
+        gateway = "192.168.1.1"
       }
     }
 
@@ -76,7 +76,7 @@ resource "proxmox_virtual_environment_vm" "master02" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr8"
   }
 }
 
@@ -97,8 +97,8 @@ resource "proxmox_virtual_environment_vm" "master03" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.43/24"
-        gateway = "192.168.219.1"
+        address = "192.168.1.43/24"
+        gateway = "192.168.1.1"
       }
     }
 
@@ -118,7 +118,7 @@ resource "proxmox_virtual_environment_vm" "master03" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr8"
   }
 }
 
@@ -141,8 +141,8 @@ resource "proxmox_virtual_environment_vm" "usr_master01" {
   
     ip_config {
       ipv4 {
-        address = "192.168.219.51/24"
-        gateway = "192.168.219.1"
+        address = "192.168.2.51/24"
+        gateway = "192.168.2.1"
       }
     }
 
@@ -162,7 +162,7 @@ resource "proxmox_virtual_environment_vm" "usr_master01" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr9"
   }
 }
 
@@ -182,8 +182,8 @@ resource "proxmox_virtual_environment_vm" "usr_master02" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.52/24"
-        gateway = "192.168.219.1"
+        address = "192.168.2.52/24"
+        gateway = "192.168.2.1"
       }
     }
 
@@ -203,7 +203,7 @@ resource "proxmox_virtual_environment_vm" "usr_master02" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr9"
   }
 }
 
@@ -224,8 +224,8 @@ resource "proxmox_virtual_environment_vm" "usr_master03" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.53/24"
-        gateway = "192.168.219.1"
+        address = "192.168.2.53/24"
+        gateway = "192.168.2.1"
       }
     }
 
@@ -245,6 +245,6 @@ resource "proxmox_virtual_environment_vm" "usr_master03" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr9"
   }
 }

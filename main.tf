@@ -39,3 +39,8 @@ module "images" {
   proxmox_mini3  = var.proxmox_mini_pc3
   proxmox_server = var.proxmox_server_pc
 }
+
+module "network" {
+  source         = "./modules/network"
+  proxmox_server = var.proxmox_server_pc
+}

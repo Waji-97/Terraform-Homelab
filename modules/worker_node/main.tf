@@ -14,8 +14,8 @@ resource "proxmox_virtual_environment_vm" "worker01" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.44/24"
-        gateway = "192.168.219.1"
+        address = "192.168.1.44/24"
+        gateway = "192.168.1.1"
       }
     }
 
@@ -35,7 +35,7 @@ resource "proxmox_virtual_environment_vm" "worker01" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr8"
   }
 }
 
@@ -55,8 +55,8 @@ resource "proxmox_virtual_environment_vm" "worker02" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.45/24"
-        gateway = "192.168.219.1"
+        address = "192.168.1.45/24"
+        gateway = "192.168.1.1"
       }
     }
 
@@ -76,7 +76,7 @@ resource "proxmox_virtual_environment_vm" "worker02" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr8"
   }
 }
 
@@ -98,8 +98,8 @@ resource "proxmox_virtual_environment_vm" "usr_worker01" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.54/24"
-        gateway = "192.168.219.1"
+        address = "192.168.2.54/24"
+        gateway = "192.168.2.1"
       }
     }
 
@@ -119,7 +119,7 @@ resource "proxmox_virtual_environment_vm" "usr_worker01" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr9"
   }
 }
 
@@ -139,8 +139,8 @@ resource "proxmox_virtual_environment_vm" "usr_worker02" {
 
     ip_config {
       ipv4 {
-        address = "192.168.219.55/24"
-        gateway = "192.168.219.1"
+        address = "192.168.2.55/24"
+        gateway = "192.168.2.1"
       }
     }
 
@@ -160,6 +160,6 @@ resource "proxmox_virtual_environment_vm" "usr_worker02" {
   }
 
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr9"
   }
 }

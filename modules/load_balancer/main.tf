@@ -19,6 +19,12 @@ resource "proxmox_virtual_environment_vm" "lb01" {
       }
     }
 
+    ip_config {
+      ipv4 {
+        address = "192.168.1.1/24"
+      }
+    }
+
     user_account {
       username = "homelab"
       keys = [trimspace(var.ssh_key)]
@@ -36,6 +42,10 @@ resource "proxmox_virtual_environment_vm" "lb01" {
 
   network_device {
     bridge = "vmbr0"
+  }
+
+  network_device {
+    bridge = "vmbr8"
   }
 }
 
@@ -60,6 +70,12 @@ resource "proxmox_virtual_environment_vm" "lb02" {
       }
     }
 
+    ip_config {
+      ipv4 {
+        address = "192.168.2.1/24"
+      }
+    }
+
     user_account {
       username = "homelab"
       keys = [trimspace(var.ssh_key)]
@@ -77,5 +93,9 @@ resource "proxmox_virtual_environment_vm" "lb02" {
 
   network_device {
     bridge = "vmbr0"
+  }
+
+  network_device {
+    bridge = "vmbr9"
   }
 }
