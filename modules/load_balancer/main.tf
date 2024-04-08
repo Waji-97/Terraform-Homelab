@@ -1,6 +1,6 @@
 resource "proxmox_virtual_environment_vm" "lb01" {
   name = "lb01"
-  node_name = var.proxmox_server_pc
+  node_name = var.proxmox_server
 
   cpu {
     cores = 1
