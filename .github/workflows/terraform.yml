@@ -28,6 +28,7 @@ jobs:
       run: terraform fmt
 
     - name: Terraform Plan
+      if: github.event_name == 'pull_request'
       run: |
         export TF_VAR_pm_api_url=$PM_API_URL
         export TF_VAR_ssh_key=$SSH_KEY

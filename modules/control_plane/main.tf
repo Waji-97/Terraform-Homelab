@@ -1,13 +1,13 @@
-resource "proxmox_virtual_environment_vm" "master01" {
-  name = "master01"
+resource "proxmox_virtual_environment_vm" "wa-master01" {
+  name = "wa-master01"
   node_name = var.proxmox_mini1
 
   cpu {
-    cores = 4
+    cores = 3
   }
 
   memory {
-    dedicated = 14336
+    dedicated = 8096
   }
 
   initialization {
@@ -31,7 +31,7 @@ resource "proxmox_virtual_environment_vm" "master01" {
     file_id = var.ubuntu_image_file1_id
     interface = "virtio0"
     iothread = true
-    size = 27
+    size = 20
   }
 
   network_device {
@@ -39,16 +39,16 @@ resource "proxmox_virtual_environment_vm" "master01" {
   }
 }
 
-resource "proxmox_virtual_environment_vm" "master02" {
-  name = "master02"
+resource "proxmox_virtual_environment_vm" "wa-master02" {
+  name = "wa-master02"
   node_name = var.proxmox_mini2
 
   cpu {
-    cores = 4
+    cores = 3
   }
 
   memory {
-    dedicated = 14336
+    dedicated = 8096
   }
 
   initialization {
@@ -72,7 +72,7 @@ resource "proxmox_virtual_environment_vm" "master02" {
     file_id = var.ubuntu_image_file2_id
     interface = "virtio0"
     iothread = true
-    size = 27
+    size = 20
   }
 
   network_device {
@@ -81,8 +81,8 @@ resource "proxmox_virtual_environment_vm" "master02" {
 }
 
 
-resource "proxmox_virtual_environment_vm" "master03" {
-  name = "master03"
+resource "proxmox_virtual_environment_vm" "wa-master03" {
+  name = "wa-master03"
   node_name = var.proxmox_mini3
 
   cpu {
@@ -90,7 +90,7 @@ resource "proxmox_virtual_environment_vm" "master03" {
   }
 
   memory {
-    dedicated = 14336
+    dedicated = 8096
   }
 
   initialization {
@@ -114,7 +114,7 @@ resource "proxmox_virtual_environment_vm" "master03" {
     file_id = var.ubuntu_image_file3_id
     interface = "virtio0"
     iothread = true
-    size = 27
+    size = 20
   }
 
   network_device {
