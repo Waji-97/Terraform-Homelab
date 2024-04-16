@@ -38,6 +38,10 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     bridge = "vmbr0"
   }
 
+  provisioner "local-exec" {
+    command = "ansible-playbook -i /home/homelab/aptfix-playbook/inventory /home/homelab/aptfix-playbook/playbook.yaml"
+  }
+
   provisioner "file" {
     connection {
     type = "ssh"
@@ -57,9 +61,6 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     host = "192.168.219.41"
   }
     inline = [
-      "sudo rm -rf /var/lib/apt/lists/*",
-      "sudo apt-get update -o Acquire::CompressionTypes::Order::=gz",
-      "sudo apt update && sudo apt upgrade",
       "sudo /bin/bash k8s_init.sh --version v1.28"
     ]    
   }
