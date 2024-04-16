@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image_mini1" 
   datastore_id = "local"
   node_name    = var.proxmox_mini1
 
-  url = "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+  url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 }
 
 resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image_mini2" {
