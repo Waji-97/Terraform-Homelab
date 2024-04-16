@@ -37,4 +37,8 @@ resource "proxmox_virtual_environment_vm" "lb01" {
   network_device {
     bridge = "vmbr0"
   }
+
+  provisioner "local-exec" {
+    command = "/bin/bash /home/homelab/lb-setup.sh"
+  }
 }

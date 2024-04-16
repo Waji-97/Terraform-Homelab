@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
   }
 
   initialization {
-  
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.41/24"
@@ -23,6 +23,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
       username = "homelab"
       keys = [trimspace(var.ssh_key)]
     }
+
   }
 
 
@@ -75,7 +76,7 @@ resource "proxmox_virtual_environment_vm" "wa-master02" {
   }
 
   initialization {
-
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.42/24"
@@ -101,6 +102,29 @@ resource "proxmox_virtual_environment_vm" "wa-master02" {
   network_device {
     bridge = "vmbr0"
   }
+
+  provisioner "file" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.42"
+  }
+    source = "/home/homelab/k8s_init.sh"
+    destination = "/home/homelab/k8s_init.sh"     
+  }
+
+  provisioner "remote-exec" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.42"
+  }
+    inline = [
+      "sudo /bin/bash k8s_init.sh --version v1.28"
+    ]    
+  }
 }
 
 
@@ -117,7 +141,7 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
   }
 
   initialization {
-
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.43/24"
@@ -142,5 +166,27 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
 
   network_device {
     bridge = "vmbr0"
+  }
+  provisioner "file" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.43"
+  }
+    source = "/home/homelab/k8s_init.sh"
+    destination = "/home/homelab/k8s_init.sh"     
+  }
+
+  provisioner "remote-exec" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.43"
+  }
+    inline = [
+      "sudo /bin/bash k8s_init.sh --version v1.28"
+    ]    
   }
 }
