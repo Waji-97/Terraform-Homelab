@@ -38,7 +38,26 @@ resource "proxmox_virtual_environment_vm" "lb01" {
     bridge = "vmbr0"
   }
 
-  provisioner "local-exec" {
-    command = "/bin/bash /home/homelab/lb-setup.sh"
+  provisioner "file" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.40"
+  }
+    source = "/home/homelab/local-lb-setup.sh"
+    destination = "/home/homelab/local-lb-setup.sh"     
+  }
+
+  provisioner "remote-exec" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.40"
+  }
+    inline = [
+      "sudo /bin/bash local-lb-setup"
+    ]    
   }
 }
