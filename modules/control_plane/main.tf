@@ -45,7 +45,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     private_key = "${file("/home/homelab/.ssh/id_rsa")}"
     host = "192.168.219.41"
   }
-    source = "../../k8s_init.sh"
+    source = "/home/homelab/k8s_init.sh"
     destination = "/home/homelab/k8s_init.sh"     
   }
 
