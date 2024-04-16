@@ -12,7 +12,7 @@ resource "proxmox_virtual_environment_vm" "lb01" {
 
   initialization {
 
-    upgrade = false
+    upgrade = "false"
 
     ip_config {
       ipv4 {

@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
   }
 
   initialization {
-    upgrade = false
+    upgrade = "false"
 
     ip_config {
       ipv4 {
@@ -76,7 +76,7 @@ resource "proxmox_virtual_environment_vm" "wa-master02" {
   }
 
   initialization {
-    upgrade = false
+    upgrade = "false"
 
     ip_config {
       ipv4 {
@@ -142,7 +142,7 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
   }
 
   initialization {
-    upgrade = false
+    upgrade = "false"
 
     ip_config {
       ipv4 {
