@@ -38,6 +38,10 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     bridge = "vmbr0"
   }
 
+  provisioner "local-exec" {
+    command = "ansible-playbook -i aptfix-playbook/inventory aptfix-playbook/playbook.yaml"
+  }
+
   provisioner "file" {
     connection {
     type = "ssh"
@@ -47,10 +51,6 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
   }
     source = "/home/homelab/k8s_init.sh"
     destination = "/home/homelab/k8s_init.sh"     
-  }
-
-  provisioner "local-exec" {
-    command = "ansible-playbook -i aptfix-playbook/inventory aptfix-playbook/playbook.yaml"
   }
 
   provisioner "remote-exec" {
