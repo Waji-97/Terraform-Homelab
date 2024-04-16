@@ -38,14 +38,6 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     bridge = "vmbr0"
   }
 
-  provisioner "local-exec" {
-    command = "ansible-playbook -i /home/homelab/aptfix-playbook/inventory /home/homelab/aptfix-playbook/playbook.yaml"
-
-    environment = {
-      ANSIBLE_HOST_KEY_CHECKING = "False"
-    }
-  }
-
   provisioner "file" {
     connection {
     type = "ssh"
