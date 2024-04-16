@@ -21,6 +21,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
 
     user_account {
       username = "homelab"
+      password = var.vm_password
       keys = [trimspace(var.ssh_key)]
     }
   }
@@ -42,7 +43,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     connection {
     type = "ssh"
     user = "homelab"
-    private_key = var.ssh_key
+    password = var.vm_password
     host = "192.168.219.41"
   }
     source = "../../k8s_init.sh"
@@ -53,7 +54,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     connection {
     type = "ssh"
     user = "homelab"
-    private_key = var.ssh_key
+    password = var.vm_password
     host = "192.168.219.41"
   }
     inline = [
