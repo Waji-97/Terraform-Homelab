@@ -11,6 +11,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
   }
 
   initialization {
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.41/24"
@@ -75,6 +76,7 @@ resource "proxmox_virtual_environment_vm" "wa-master02" {
   }
 
   initialization {
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.42/24"
@@ -139,6 +141,7 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
   }
 
   initialization {
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.43/24"
