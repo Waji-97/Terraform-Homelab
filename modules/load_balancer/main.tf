@@ -57,7 +57,7 @@ resource "proxmox_virtual_environment_vm" "lb01" {
     host = "192.168.219.40"
   }
     inline = [
-      "sudo /bin/bash local-lb-setup"
+      "sudo /bin/bash local-lb-setup.sh"
     ]    
   }
 }
