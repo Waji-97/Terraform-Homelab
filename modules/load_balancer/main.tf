@@ -12,6 +12,8 @@ resource "proxmox_virtual_environment_vm" "lb01" {
 
   initialization {
 
+    upgrade = false
+
     ip_config {
       ipv4 {
         address = "192.168.219.40/24"
@@ -36,5 +38,9 @@ resource "proxmox_virtual_environment_vm" "lb01" {
 
   network_device {
     bridge = "vmbr0"
+  }
+
+  provisioner "local-exec" {
+    command = "/bin/bash /home/homelab/lb-setup.sh"
   }
 }

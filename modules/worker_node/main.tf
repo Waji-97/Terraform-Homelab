@@ -12,6 +12,8 @@ resource "proxmox_virtual_environment_vm" "wa-worker01" {
 
   initialization {
 
+    upgrade = false
+
     ip_config {
       ipv4 {
         address = "192.168.219.44/24"
