@@ -15,6 +15,11 @@ variable "ssh_key" {
   sensitive = true
 }
 
+variable "vm_password" {
+  type = string
+  sensitive = true
+}
+
 variable "ubuntu_image_file1_id" {
   type = string
 }
