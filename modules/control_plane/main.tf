@@ -42,7 +42,7 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     connection {
     type = "ssh"
     user = "homelab"
-    private_key = [trimspace(var.ssh_key)]
+    private_key = var.ssh_key
     host = "192.168.219.41"
   }
     source = "../../k8s_init.sh"
