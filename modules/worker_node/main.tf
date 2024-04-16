@@ -37,4 +37,26 @@ resource "proxmox_virtual_environment_vm" "wa-worker01" {
   network_device {
     bridge = "vmbr0"
   }
+  provisioner "file" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.44"
+  }
+    source = "/home/homelab/k8s_init.sh"
+    destination = "/home/homelab/k8s_init.sh"     
+  }
+
+  provisioner "remote-exec" {
+    connection {
+    type = "ssh"
+    user = "homelab"
+    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
+    host = "192.168.219.44"
+  }
+    inline = [
+      "sudo /bin/bash k8s_init.sh --version v1.28"
+    ]    
+  }
 }
