@@ -11,8 +11,6 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
   }
 
   initialization {
-    upgrade = "false"
-
     ip_config {
       ipv4 {
         address = "192.168.219.41/24"
@@ -24,6 +22,9 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
       username = "homelab"
       keys = [trimspace(var.ssh_key)]
     }
+    
+    upgrade = "false"
+
   }
 
 
