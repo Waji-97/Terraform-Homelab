@@ -34,6 +34,7 @@ jobs:
         export TF_VAR_ssh_key=$SSH_KEY
         export TF_VAR_pm_user=$PM_USER
         export TF_VAR_pm_password=$PM_PASSWORD
+        export TF_VAR_vm_password=$VM_PASSWORD
         export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER_PC
         export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
@@ -45,6 +46,7 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
+        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
         PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
         PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
         PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}
@@ -57,6 +59,7 @@ jobs:
         export TF_VAR_ssh_key=$SSH_KEY
         export TF_VAR_pm_user=$PM_USER
         export TF_VAR_pm_password=$PM_PASSWORD
+        export TF_VAR_vm_password=$VM_PASSWORD
         export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER_PC
         export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
         export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
@@ -68,6 +71,7 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
+        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
         PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
         PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
         PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}
