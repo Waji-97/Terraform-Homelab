@@ -32,3 +32,11 @@ variable "ubuntu_image_file3_id" {
   type = string
 }
 
+## ksg
+variable "proxmox_server" {
+    type = string
+}
+
+variable "ubuntu_image_file_id" {
+  type = string
+}

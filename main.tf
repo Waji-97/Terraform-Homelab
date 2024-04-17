@@ -8,6 +8,9 @@ module "control_plane" {
   ubuntu_image_file1_id = module.images.ubuntu_cloud_image_mini1_id
   ubuntu_image_file2_id = module.images.ubuntu_cloud_image_mini2_id
   ubuntu_image_file3_id = module.images.ubuntu_cloud_image_mini3_id
+  ## ksg
+  proxmox_server       = var.proxmox_server_pc
+  ubuntu_image_file_id = module.images.ubuntu_cloud_image_pve_id
 }
 
 module "worker_node" {

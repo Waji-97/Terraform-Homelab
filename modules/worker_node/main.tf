@@ -60,3 +60,45 @@ resource "proxmox_virtual_environment_vm" "wa-worker01" {
     ]    
   }
 }
+
+## ksg
+resource "proxmox_virtual_environment_vm" "ksg-worker01" {
+  name = "ksg-worker01"
+  node_name = var.proxmox_server
+
+  cpu {
+    cores = 3
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  initialization {
+    upgrade = false
+    ip_config {
+      ipv4 {
+        address = "192.168.219.54/24"
+        gateway = "192.168.219.1"
+      }
+    }
+
+    user_account {
+      username = "homelab"
+      keys = [trimspace(var.ssh_key)]
+    }
+  }
+
+
+  disk {
+    datastore_id = "local-lvm"
+    file_id = var.ubuntu_image_file_id
+    interface = "virtio0"
+    iothread = true
+    size = 20
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+}  

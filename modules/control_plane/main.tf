@@ -190,3 +190,131 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
     ]    
   }
 }
+## ksg
+resource "proxmox_virtual_environment_vm" "ksg-master01" {
+  name = "ksg-master01"
+  node_name = var.proxmox_server
+
+  cpu {
+    cores = 2
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  initialization {
+    upgrade = false
+    ip_config {
+      ipv4 {
+        address = "192.168.219.51/24"
+        gateway = "192.168.219.1"
+      }
+    }
+
+    user_account {
+      username = "homelab"
+      keys = [trimspace(var.ssh_key)]
+    }
+
+  }
+
+
+  disk {
+    datastore_id = "local-lvm"
+    file_id = var.ubuntu_image_file1_id
+    interface = "virtio0"
+    iothread = true
+    size = 20
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+}
+
+## ksg
+resource "proxmox_virtual_environment_vm" "ksg-master02" {
+  name = "ksg-master02"
+  node_name = var.proxmox_server
+
+  cpu {
+    cores = 2
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  initialization {
+    upgrade = false
+    ip_config {
+      ipv4 {
+        address = "192.168.219.52/24"
+        gateway = "192.168.219.1"
+      }
+    }
+
+    user_account {
+      username = "homelab"
+      keys = [trimspace(var.ssh_key)]
+    }
+
+  }
+
+
+  disk {
+    datastore_id = "local-lvm"
+    file_id = var.ubuntu_image_file1_id
+    interface = "virtio0"
+    iothread = true
+    size = 20
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+}
+
+## ksg
+resource "proxmox_virtual_environment_vm" "ksg-master03" {
+  name = "ksg-master03"
+  node_name = var.proxmox_server
+
+  cpu {
+    cores = 2
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  initialization {
+    upgrade = false
+    ip_config {
+      ipv4 {
+        address = "192.168.219.53/24"
+        gateway = "192.168.219.1"
+      }
+    }
+
+    user_account {
+      username = "homelab"
+      keys = [trimspace(var.ssh_key)]
+    }
+
+  }
+
+
+  disk {
+    datastore_id = "local-lvm"
+    file_id = var.ubuntu_image_file1_id
+    interface = "virtio0"
+    iothread = true
+    size = 20
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+}
