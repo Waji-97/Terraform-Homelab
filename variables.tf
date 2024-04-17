@@ -32,8 +32,3 @@ variable "ssh_key" {
   type      = string
   sensitive = true
 }
-
-variable "vm_password" {
-  type      = string
-  sensitive = true
-}
