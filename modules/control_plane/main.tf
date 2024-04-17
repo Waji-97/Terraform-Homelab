@@ -58,6 +58,8 @@ resource "proxmox_virtual_environment_vm" "wa-master01" {
     host = "192.168.219.41"
   }
     inline = [
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "sudo apt update -o Acquire::CompressionTypes::Order::=gz",
       "sudo /bin/bash k8s_init.sh --version v1.28"
     ]    
   }
@@ -122,6 +124,8 @@ resource "proxmox_virtual_environment_vm" "wa-master02" {
     host = "192.168.219.42"
   }
     inline = [
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "sudo apt update -o Acquire::CompressionTypes::Order::=gz",
       "sudo /bin/bash k8s_init.sh --version v1.28"
     ]    
   }
@@ -186,6 +190,8 @@ resource "proxmox_virtual_environment_vm" "wa-master03" {
     host = "192.168.219.43"
   }
     inline = [
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "sudo apt update -o Acquire::CompressionTypes::Order::=gz",
       "sudo /bin/bash k8s_init.sh --version v1.28"
     ]    
   }
