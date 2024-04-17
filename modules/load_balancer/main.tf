@@ -57,6 +57,9 @@ resource "proxmox_virtual_environment_vm" "lb01" {
     host = "192.168.219.40"
   }
     inline = [
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "sudo apt update -o Acquire::CompressionTypes::Order::=gz",
+      "sudo apt upgrade -y",
       "sudo /bin/bash local-lb-setup.sh"
     ]    
   }

@@ -56,6 +56,8 @@ resource "proxmox_virtual_environment_vm" "wa-worker01" {
     host = "192.168.219.44"
   }
     inline = [
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "sudo apt update -o Acquire::CompressionTypes::Order::=gz",
       "sudo /bin/bash k8s_init.sh --version v1.28"
     ]    
   }
