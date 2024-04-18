@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_vm" "lb01" {
   }
 
   initialization {
-
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.40/24"
@@ -75,7 +75,7 @@ resource "proxmox_virtual_environment_vm" "lb02" {
   }
 
   initialization {
-
+    upgrade = false
     ip_config {
       ipv4 {
         address = "192.168.219.50/24"
