@@ -33,6 +33,17 @@ variable "ssh_key" {
   sensitive = true
 }
 
+variable "cluster_node_network" {
+  type    = string
+  default = "192.168.219.0/24"
+}
+
+variable "cluster_node_network_gateway" {
+  type    = string
+  default = "192.168.219.1"
+}
+
+## KSG Cluster Vars
 variable "ksg_master_count" {
   type    = number
   default = 3
@@ -51,16 +62,6 @@ variable "ksg_worker_count" {
   }
 }
 
-variable "cluster_node_network" {
-  type    = string
-  default = "192.168.219.0/24"
-}
-
-variable "cluster_node_network_gateway" {
-  type    = string
-  default = "192.168.219.1"
-}
-
 variable "ksg_master_ip" {
   type    = number
   default = 50
@@ -69,4 +70,33 @@ variable "ksg_master_ip" {
 variable "ksg_worker_ip" {
   type    = number
   default = 53
+}
+
+## YG Cluster Vars
+variable "yg_master_count" {
+  type    = number
+  default = 2
+  validation {
+    condition     = var.yg_master_count >= 1
+    error_message = "Must be 1 or more."
+  }
+}
+
+variable "yg_worker_count" {
+  type    = number
+  default = 2
+  validation {
+    condition     = var.yg_worker_count >= 1
+    error_message = "Must be 1 or more."
+  }
+}
+
+variable "yg_master_ip" {
+  type    = number
+  default = 60
+}
+
+variable "yg_worker_ip" {
+  type    = number
+  default = 62
 }
