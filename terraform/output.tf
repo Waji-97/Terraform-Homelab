@@ -16,4 +16,3 @@ output "ubuntu_cloud_image_mini2_id" {
 output "ubuntu_cloud_image_mini3_id" {
   value = proxmox_virtual_environment_download_file.ubuntu_cloud_image_mini3.id
 }
-

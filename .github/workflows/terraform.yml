@@ -16,6 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: terraform
 
     steps:      
     - name: Checkout
@@ -46,7 +47,6 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
-        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
         PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
         PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
         PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}
@@ -71,7 +71,6 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
-        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
         PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
         PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
         PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}

@@ -1,3 +1,4 @@
+## ISO Images (cloud-init)
 resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image_pve" {
   content_type = "iso"
   datastore_id = "local"
@@ -29,4 +30,3 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image_mini3" 
 
   url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 }
-
