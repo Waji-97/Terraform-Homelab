@@ -1,6 +1,6 @@
 ## Load Balancer
 resource "proxmox_virtual_environment_vm" "ksg_lb" {
-  name      = "ksg_lb"
+  name      = "ksg-lb"
   node_name = var.proxmox_server
 
   cpu {
