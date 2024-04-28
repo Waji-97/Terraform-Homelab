@@ -44,7 +44,7 @@ resource "proxmox_virtual_environment_vm" "ksg_lb" {
       type        = "ssh"
       user        = "homelab"
       private_key = file("/home/homelab/.ssh/id_rsa")
-      host        = "192.168.219.50/24"
+      host        = "192.168.219.50"
     }
     source      = "/home/homelab/ksg-local-lb-setup.sh"
     destination = "/home/homelab/local-lb-setup.sh"
@@ -55,7 +55,7 @@ resource "proxmox_virtual_environment_vm" "ksg_lb" {
       type        = "ssh"
       user        = "homelab"
       private_key = file("/home/homelab/.ssh/id_rsa")
-      host        = "192.168.219.50/24"
+      host        = "192.168.219.50"
     }
     inline = [
       "sudo /bin/bash local-lb-setup.sh"
