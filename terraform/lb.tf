@@ -1,6 +1,6 @@
 ## Load Balancer
 resource "proxmox_virtual_environment_vm" "ksg_lb" {
-  name = "ksg_lb"
+  name      = "ksg_lb"
   node_name = var.proxmox_server
 
   cpu {
@@ -22,17 +22,17 @@ resource "proxmox_virtual_environment_vm" "ksg_lb" {
 
     user_account {
       username = "homelab"
-      keys = [trimspace(var.ssh_key)]
+      keys     = [trimspace(var.ssh_key)]
     }
   }
 
 
   disk {
     datastore_id = "local-lvm"
-    file_id = var.ubuntu_image_file_id
-    interface = "virtio0"
-    iothread = true
-    size = 20
+    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image_pve.id
+    interface    = "virtio0"
+    iothread     = true
+    size         = 20
   }
 
   network_device {
@@ -41,24 +41,24 @@ resource "proxmox_virtual_environment_vm" "ksg_lb" {
 
   provisioner "file" {
     connection {
-    type = "ssh"
-    user = "homelab"
-    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
-    host = "192.168.219.50/24"
-  }
-    source = "/home/homelab/ksg-local-lb-setup.sh"
-    destination = "/home/homelab/local-lb-setup.sh"     
+      type        = "ssh"
+      user        = "homelab"
+      private_key = file("/home/homelab/.ssh/id_rsa")
+      host        = "192.168.219.50/24"
+    }
+    source      = "/home/homelab/ksg-local-lb-setup.sh"
+    destination = "/home/homelab/local-lb-setup.sh"
   }
 
   provisioner "remote-exec" {
     connection {
-    type = "ssh"
-    user = "homelab"
-    private_key = "${file("/home/homelab/.ssh/id_rsa")}"
-    host = "192.168.219.50/24"
-  }
+      type        = "ssh"
+      user        = "homelab"
+      private_key = file("/home/homelab/.ssh/id_rsa")
+      host        = "192.168.219.50/24"
+    }
     inline = [
       "sudo /bin/bash local-lb-setup.sh"
-    ]    
+    ]
   }
 }
