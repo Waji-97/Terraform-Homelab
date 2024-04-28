@@ -1,4 +1,4 @@
-resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
+resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
     name      = "ksg-cka-master01"
     node_name = "pve"
   
@@ -16,7 +16,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
   
     disk {
       datastore_id = "local-lvm"
-      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image_pve.id
       interface    = "virtio0"
       iothread     = true
       discard      = "on"
@@ -41,16 +41,8 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
     } 
   }
   
-  resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
-    content_type = "iso"
-    datastore_id = "local"
-    node_name    = "pve"
-  
-    url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-  }
 
-
-  resource "proxmox_virtual_environment_vm" "worker_ubuntu_vm" {
+  resource "proxmox_virtual_environment_vm" "worker_ubuntu_vm01" {
     name      = "ksg-cka-worker01"
     node_name = "pve"
   
@@ -68,7 +60,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
   
     disk {
       datastore_id = "local-lvm"
-      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image_pve.id
       interface    = "virtio0"
       iothread     = true
       discard      = "on"
@@ -92,18 +84,10 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
       bridge = "vmbr0"
     } 
   }
-  
-  resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
-    content_type = "iso"
-    datastore_id = "local"
-    node_name    = "pve"
-  
-    url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-  }
 
 
 
-  resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
+  resource "proxmox_virtual_environment_vm" "master_ubuntu_vm02" {
     name      = "ksg-cka-master02"
     node_name = "pve"
   
@@ -121,7 +105,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
   
     disk {
       datastore_id = "local-lvm"
-      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image_pve.id
       interface    = "virtio0"
       iothread     = true
       discard      = "on"
@@ -146,16 +130,8 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
     } 
   }
   
-  resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
-    content_type = "iso"
-    datastore_id = "local"
-    node_name    = "pve"
-  
-    url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-  }
 
-
-  resource "proxmox_virtual_environment_vm" "worker_ubuntu_vm" {
+  resource "proxmox_virtual_environment_vm" "worker_ubuntu_vm02" {
     name      = "ksg-cka-worker02"
     node_name = "pve"
   
@@ -173,7 +149,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
   
     disk {
       datastore_id = "local-lvm"
-      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+      file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image_pve.id
       interface    = "virtio0"
       iothread     = true
       discard      = "on"
@@ -198,10 +174,3 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm" {
     } 
   }
   
-  resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
-    content_type = "iso"
-    datastore_id = "local"
-    node_name    = "pve"
-  
-    url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-  }
