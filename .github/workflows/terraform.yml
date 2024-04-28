@@ -16,6 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: terraform
 
     steps:      
     - name: Checkout
@@ -24,8 +25,8 @@ jobs:
     - name: Terraform Init
       run: terraform init -upgrade
 
-    - name: Terraform Format
-      run: terraform fmt
+    - name: Terraform Format Check
+      run: terraform fmt -check
 
     - name: Terraform Plan
       if: github.event_name == 'pull_request'
@@ -34,11 +35,10 @@ jobs:
         export TF_VAR_ssh_key=$SSH_KEY
         export TF_VAR_pm_user=$PM_USER
         export TF_VAR_pm_password=$PM_PASSWORD
-        export TF_VAR_vm_password=$VM_PASSWORD
-        export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER_PC
-        export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
-        export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
-        export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
+        export TF_VAR_proxmox_server=$PROXMOX_SERVER
+        export TF_VAR_proxmox_mini1=$PROXMOX_MINI1
+        export TF_VAR_proxmox_mini2=$PROXMOX_MINI2
+        export TF_VAR_proxmox_mini3=$PROXMOX_MINI3
 
         terraform plan -input=false
       env: 
@@ -46,11 +46,10 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
-        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
-        PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
-        PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
-        PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}
-        PROXMOX_MINI_PC3: ${{ secrets.TF_PROXMOX_MINI_PC3 }}
+        PROXMOX_SERVER: ${{ secrets.TF_PROXMOX_SERVER }}
+        PROXMOX_MINI1: ${{ secrets.TF_PROXMOX_MINI1 }}
+        PROXMOX_MINI2: ${{ secrets.TF_PROXMOX_MINI2 }}
+        PROXMOX_MINI3: ${{ secrets.TF_PROXMOX_MINI3 }}
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -59,11 +58,10 @@ jobs:
         export TF_VAR_ssh_key=$SSH_KEY
         export TF_VAR_pm_user=$PM_USER
         export TF_VAR_pm_password=$PM_PASSWORD
-        export TF_VAR_vm_password=$VM_PASSWORD
-        export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER_PC
-        export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI_PC1
-        export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI_PC2
-        export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI_PC3
+        export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER
+        export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI1
+        export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI2
+        export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI3
 
         terraform apply -auto-approve -input=false
       env:
@@ -71,8 +69,7 @@ jobs:
         PM_API_URL: ${{ secrets.TF_PM_API_URL }}
         PM_USER: ${{ secrets.TF_PM_USER }}
         PM_PASSWORD: ${{ secrets.TF_PM_PASSWORD }}
-        VM_PASSWORD: ${{ secrets.TF_VM_PASSWORD }}
-        PROXMOX_SERVER_PC: ${{ secrets.TF_PROXMOX_SERVER_PC }}
-        PROXMOX_MINI_PC1: ${{ secrets.TF_PROXMOX_MINI_PC1 }}
-        PROXMOX_MINI_PC2: ${{ secrets.TF_PROXMOX_MINI_PC2 }}
-        PROXMOX_MINI_PC3: ${{ secrets.TF_PROXMOX_MINI_PC3 }}
+        PROXMOX_SERVER: ${{ secrets.TF_PROXMOX_SERVER }}
+        PROXMOX_MINI1: ${{ secrets.TF_PROXMOX_MINI1 }}
+        PROXMOX_MINI2: ${{ secrets.TF_PROXMOX_MINI2 }}
+        PROXMOX_MINI3: ${{ secrets.TF_PROXMOX_MINI3 }}
