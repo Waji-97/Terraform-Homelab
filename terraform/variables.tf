@@ -43,35 +43,6 @@ variable "cluster_node_network_gateway" {
   default = "192.168.219.1"
 }
 
-## KSG Cluster Vars
-variable "ksg_master_count" {
-  type    = number
-  default = 3
-  validation {
-    condition     = var.ksg_master_count >= 1
-    error_message = "Must be 1 or more."
-  }
-}
-
-variable "ksg_worker_count" {
-  type    = number
-  default = 1
-  validation {
-    condition     = var.ksg_worker_count >= 1
-    error_message = "Must be 1 or more."
-  }
-}
-
-variable "ksg_master_ip" {
-  type    = number
-  default = 50
-}
-
-variable "ksg_worker_ip" {
-  type    = number
-  default = 53
-}
-
 ## YG Cluster Vars
 variable "yg_master_count" {
   type    = number
