@@ -58,10 +58,10 @@ jobs:
         export TF_VAR_ssh_key=$SSH_KEY
         export TF_VAR_pm_user=$PM_USER
         export TF_VAR_pm_password=$PM_PASSWORD
-        export TF_VAR_proxmox_server_pc=$PROXMOX_SERVER
-        export TF_VAR_proxmox_mini_pc1=$PROXMOX_MINI1
-        export TF_VAR_proxmox_mini_pc2=$PROXMOX_MINI2
-        export TF_VAR_proxmox_mini_pc3=$PROXMOX_MINI3
+        export TF_VAR_proxmox_server=$PROXMOX_SERVER
+        export TF_VAR_proxmox_mini1=$PROXMOX_MINI1
+        export TF_VAR_proxmox_mini2=$PROXMOX_MINI2
+        export TF_VAR_proxmox_mini3=$PROXMOX_MINI3
 
         terraform apply -auto-approve -input=false
       env:
