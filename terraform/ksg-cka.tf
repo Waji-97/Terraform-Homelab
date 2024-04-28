@@ -27,7 +27,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
       ip_config {
         ipv4 {
             address = "192.168.219.55/24"
-            gateway = "192.168.219.0/24"
+            gateway = "192.168.219.1"
         }
       }
   
@@ -71,7 +71,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
       ip_config {
         ipv4 {
             address = "192.168.219.56/24"
-            gateway = "192.168.219.0/24"
+            gateway = "192.168.219.1"
         }
       }
   
@@ -116,7 +116,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
       ip_config {
         ipv4 {
             address = "192.168.219.57/24"
-            gateway = "192.168.219.0/24"
+            gateway = "192.168.219.1"
         }
       }
   
@@ -160,7 +160,7 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
       ip_config {
         ipv4 {
             address = "192.168.219.58/24"
-            gateway = "192.168.219.0/24"
+            gateway = "192.168.219.1"
         }
       }
   
