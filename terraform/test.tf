@@ -2,9 +2,23 @@ resource "proxmox_virtual_environment_vm" "example" {
   name      = "test-talos"
   node_name = "pve"
   started = false
+  bios = "ovmf"
+  scsi_hardware   = "virtio-scsi-single"
+  operating_system {
+    type = "l26"
+  }
 
   clone {
     vm_id = 3000
+  }
+
+  tpm_state {
+    version = "v2.0"
+  }
+
+  agent {
+    enabled = true
+    trim    = true
   }
 
   machine = "q35"
@@ -18,6 +32,16 @@ resource "proxmox_virtual_environment_vm" "example" {
     cores = 2
   }
 
+  vga {
+    type = "qxl"
+  }
+
+  efi_disk {
+    datastore_id = "local-lvm"
+    file_format  = "raw"
+    type         = "4m"
+  }
+
   disk {
     datastore_id = "local-lvm"
     interface    = "scsi0"
@@ -25,6 +49,7 @@ resource "proxmox_virtual_environment_vm" "example" {
     ssd          = true
     discard      = "on"
     size         = 20
+    file_format = "raw"
   }
 
   initialization {
