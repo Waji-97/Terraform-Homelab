@@ -2,6 +2,7 @@ resource "proxmox_virtual_environment_vm" "example" {
   name      = "test-talos"
   node_name = "pve"
   started = false
+  reboot = true
 
   clone {
     vm_id = 3000
