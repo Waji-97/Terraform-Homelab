@@ -17,11 +17,10 @@ resource "proxmox_virtual_environment_vm" "example" {
     cores = 2
   }
 
-  disk {
+  efi_disk {
     datastore_id = "local-lvm"
-    interface    = "virtio0"
-    iothread     = true
-    size         = 20
+    file_format  = "raw"
+    type         = "4m"
   }
 
   initialization {
