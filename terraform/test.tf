@@ -28,6 +28,12 @@ resource "proxmox_virtual_environment_vm" "example" {
   }
 
   initialization {
+    dns {
+      servers = [
+        "1.214.68.2",
+        "61.41.153.2"
+      ]
+    }
     ip_config {
       ipv4 {
         address = "192.168.219.32/24"
