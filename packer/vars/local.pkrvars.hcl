@@ -1,0 +1,5 @@
+proxmox_storage      = "local-lvm"
+proxmox_storage_type = "lvm"
+talos_version        = "v1.7.0"
+static_ip            = "192.168.219.30"
+gateway              = "192.168.219.1"

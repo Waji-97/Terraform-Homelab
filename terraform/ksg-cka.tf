@@ -2,9 +2,6 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
     name      = "ksg-cka-master01"
     node_name = "pve"
   
-    agent {
-      enabled = true
-    }
   
     cpu {
       cores = 2
@@ -46,9 +43,6 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
     name      = "ksg-cka-worker01"
     node_name = "pve"
   
-    agent {
-      enabled = true
-    }
   
     cpu {
       cores = 2
@@ -91,9 +85,6 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
     name      = "ksg-cka-master02"
     node_name = "pve"
   
-    agent {
-      enabled = true
-    }
   
     cpu {
       cores = 2
@@ -135,9 +126,6 @@ resource "proxmox_virtual_environment_vm" "master_ubuntu_vm01" {
     name      = "ksg-cka-worker02"
     node_name = "pve"
   
-    agent {
-      enabled = true
-    }
   
     cpu {
       cores = 2
