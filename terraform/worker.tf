@@ -59,7 +59,7 @@ resource "proxmox_virtual_environment_vm" "waji_worker" {
     cores = 4
   }
   memory {
-    dedicated = 4 * 1024
+    dedicated = 8 * 1024
   }
   vga {
     type = "qxl"
