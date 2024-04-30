@@ -36,7 +36,7 @@ resource "proxmox_virtual_environment_file" "talos" {
   node_name    = var.proxmox_server
   content_type = "iso"
   source_file {
-    path      = "/home/homelab/nocloud-amd64.qcow2"
+    path      = "/home/homelab/talos/nocloud-amd64.qcow2"
     file_name = "talos-amd64.img"
   }
 }
