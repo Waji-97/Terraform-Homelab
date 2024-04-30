@@ -18,7 +18,7 @@ resource "talos_machine_configuration_apply" "controller" {
     }),
   ]
   depends_on = [
-    proxmox_virtual_environment_vm.controller,
+    proxmox_virtual_environment_vm.waji_master,
   ]
 }
 
@@ -39,7 +39,7 @@ resource "talos_machine_configuration_apply" "worker" {
     }),
   ]
   depends_on = [
-    proxmox_virtual_environment_vm.worker,
+    proxmox_virtual_environment_vm.waji_worker,
   ]
 }
 
