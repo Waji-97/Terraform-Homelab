@@ -12,7 +12,6 @@ resource "proxmox_virtual_environment_vm" "controller" {
   name            = "test"
   node_name       = "pve"
   stop_on_destroy = true
-  bios            = "ovmf"
   machine         = "q35"
   scsi_hardware   = "virtio-scsi-single"
   operating_system {
