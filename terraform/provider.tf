@@ -4,6 +4,11 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.54.0"
     }
+
+    talos = {
+      source  = "siderolabs/talos"
+      version = "0.5.0"
+    }
   }
 
   cloud {
@@ -24,4 +29,7 @@ provider "proxmox" {
   ssh {
     agent = true
   }
+}
+
+provider "talos" {
 }

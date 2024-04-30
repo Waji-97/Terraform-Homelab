@@ -41,3 +41,61 @@ resource "proxmox_virtual_environment_vm" "yg_master" {
     bridge = "vmbr0"
   }
 }
+
+
+## Waji Talos Master Nodes
+resource "proxmox_virtual_environment_vm" "waji_master" {
+  count           = var.waji_master_count
+  name            = local.waji_master_nodes[count.index].name
+  node_name       = var.proxmox_server
+  stop_on_destroy = true
+  bios            = "ovmf"
+  machine         = "q35"
+  scsi_hardware   = "virtio-scsi-single"
+  operating_system {
+    type = "l26"
+  }
+  cpu {
+    type  = "host"
+    cores = 4
+  }
+  memory {
+    dedicated = 4 * 1024
+  }
+  vga {
+    type = "qxl"
+  }
+  network_device {
+    bridge = "vmbr0"
+  }
+  tpm_state {
+    version = "v2.0"
+  }
+  efi_disk {
+    datastore_id = "local-lvm"
+    file_format  = "raw"
+    type         = "4m"
+  }
+  disk {
+    datastore_id = "local-lvm"
+    interface    = "scsi0"
+    iothread     = true
+    ssd          = true
+    discard      = "on"
+    size         = 40
+    file_format  = "raw"
+    file_id      = proxmox_virtual_environment_file.talos.id
+  }
+  agent {
+    enabled = true
+    trim    = true
+  }
+  initialization {
+    ip_config {
+      ipv4 {
+        address = "${local.waji_master_nodes[count.index].address}/24"
+        gateway = var.cluster_node_network_gateway
+      }
+    }
+  }
+}
