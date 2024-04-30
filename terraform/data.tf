@@ -46,10 +46,9 @@ data "talos_client_configuration" "talos" {
   endpoints            = [for node in local.waji_master_nodes : node.address]
 }
 
-// see https://registry.terraform.io/providers/siderolabs/talos/0.5.0/docs/data-sources/cluster_kubeconfig
 data "talos_cluster_kubeconfig" "talos" {
   client_configuration = talos_machine_secrets.talos.client_configuration
-  endpoint             = local.waji_master_nodes
+  endpoint             = local.waji_master_nodes[0].address
   node                 = local.waji_master_nodes[0].address
   depends_on = [
     talos_machine_bootstrap.talos,
