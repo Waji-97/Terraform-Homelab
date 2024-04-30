@@ -45,8 +45,8 @@ resource "talos_machine_configuration_apply" "worker" {
 
 resource "talos_machine_bootstrap" "talos" {
   client_configuration = talos_machine_secrets.talos.client_configuration
-  endpoint             = local.waji_master_nodes
-  node                 = local.waji_master_nodes
+  endpoint             = local.waji_master_nodes[0].address
+  node                 = local.waji_master_nodes[0].address
   depends_on = [
     talos_machine_configuration_apply.controller,
   ]
